@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Boleta de Reserva{% endblock %}
+
+{% block content %}
+
+    <style>
+        /* Estilos CSS para la boleta */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2, p {
+            margin-bottom: 10px;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <h1>Boleta de Reserva</h1>
+    
+    <h2>Detalles de la compra:</h2>
+    <p>Nombre de la habitación: {{ item.room.name }}</p>
+    <p>Cantidad de días: {{ item.quantity }}</p>
+    <p>Check-in: {{ item.check_in_date }}</p>
+    <p>Check-out: {{ item.check_out_date }}</p>
+    <p>Desayuno: {{ item.has_breakfast|yesno:"Sí,No" }}</p>
+    <p>Almuerzo: {{ item.has_lunch|yesno:"Sí,No" }}</p>
+    <p>Transporte: {{ item.has_transportation|yesno:"Sí,No" }}</p>
+    <p>Precio total: ${{ item.total_price }}</p>
+    
+    <h2>Detalles del usuario:</h2>
+    <p>Nombre de usuario: {{ request.user.username }}</p>
+    <p>Email: {{ request.user.email }}</p>
+    
+    <h2>Detalles del perfil del usuario:</h2>
+    <p>Nombre: {{ profile.name }}</p>
+    <p>Teléfono: {{ profile.phone }}</p>
+    <p>Dirección: {{ profile.address }}</p>
+    <p>***********************************</p>
+    <p>Seras redirigido a catalogo en 10 segundos</p>
+    <p>***********************************</p>
+    
+    <p><a href="{% url 'catalogo' %}">Volver al catalogo</a></p>
+    <script>
+        // Redireccionar al index después de 10 segundos
+        setTimeout(function() {
+            window.location.href = "{% url 'index' %}";
+        }, 10000);  // 10000 milisegundos = 10 segundos
+    </script>
+{% endblock %}

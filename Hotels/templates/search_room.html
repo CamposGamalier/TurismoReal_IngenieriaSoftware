@@ -1,0 +1,24 @@
+<!-- En search_room.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Resultados de búsqueda{% endblock %}
+
+{% block content %}
+<div class="container-img">
+    {% for room in rooms %}
+    <div class="box-img">
+        <a href="#"><img src="{{ room.image.url }}" alt="{{ room.name }}"></a>
+        <figure>
+            <figcaption>
+                <p>{{ room.description }}</p>
+                <button class="btn">Seleccionar</button>
+            </figcaption>
+        </figure>
+    </div>
+    {% empty %}
+    <p>No se encontraron habitaciones.</p>
+    {% endfor %}
+    <a href="{% url 'index' %}">Volver al home</a>
+</div>
+{% endblock %}

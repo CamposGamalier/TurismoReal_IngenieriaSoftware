@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for room in rooms %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ room.name }}</h5>
+                    <p class="card-text">{{ room.description }}</p>
+                    <p class="card-text">Capacidad: {{ room.capacity }}</p>
+                    <p class="card-text">Precio por noche: ${{ room.price_per_night }}</p>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#roomModal{{ room.id }}">Seleccionar</button>
+                    <button class="btn btn-secondary mt-2" data-toggle="modal" data-target="#searchModal{{ room.id }}">Ver Detalles</button>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="roomModal{{ room.id }}" tabindex="-1" role="dialog" aria-labelledby="roomModal{{ room.id }}Label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="roomModal{{ room.id }}Label">{{ room.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="{% url 'add_to_cart' room.id %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="days">Cantidad de días:</label>
+                                <input type="number" class="form-control" id="days" name="days" required>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="has_breakfast" name="has_breakfast">
+                                <label class="form-check-label" for="has_breakfast">Desayuno</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="has_lunch" name="has_lunch">
+                                <label class="form-check-label" for="has_lunch">Almuerzo</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="has_transportation" name="has_transportation">
+                                <label class="form-check-label" for="has_transportation">Transporte</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Agregar al carrito</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search Modal -->
+        <div class="modal fade" id="searchModal{{ room.id }}" tabindex="-1" role="dialog" aria-labelledby="searchModal{{ room.id }}Label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="searchModal{{ room.id }}Label">Detalles de {{ room.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{ room.image.url }}" class="card-img-top" alt="{{ room.name }}">
+                        <p>{{ room.description }}</p>
+                        <p>Capacidad: {{ room.capacity }}</p>
+                        <p>Precio por noche: ${{ room.price_per_night }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

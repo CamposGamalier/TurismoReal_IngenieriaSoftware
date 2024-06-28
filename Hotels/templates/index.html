@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<div class="contenedor-video">
+    <video controls autoplay muted loop>
+        <source src="{% static 'img/4K Forest - Cinematic Forest - 4K Nature Video Ultra HD.mp4' %}" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+    </video>
+</div>
+<div class="contenido-centro">
+    <p>¡Bienvenido a nuestro exclusivo hotel de lujo en la selva de Indonesia! Sumérgete en un oasis de elegancia y serenidad, donde la naturaleza exuberante se combina con el lujo moderno. Nuestras lujosas cabañas ofrecen privacidad y comodidad, mientras que las excursiones guiadas te invitan a explorar la rica biodiversidad de la selva. Disfruta de una experiencia culinaria única y relájate en nuestro spa de clase mundial. ¡Te esperamos para una escapada inolvidable en el corazón de la naturaleza!</p>
+</div>
+<div class="container-img">
+    <div class="box-img">
+        <a href="#"></a>
+        <figure>
+            <img src="{% static 'img/s1.jpg' %}" alt="imagen1">
+        </figure>
+    </div>
+    <div class="box-img">
+        <a href="#"></a>
+        <figure>
+            <img src="{% static 'img/s2.jpg' %}" alt="imagen2">
+        </figure>
+    </div>
+    <div class="box-img">
+        <a href="#"></a>
+        <figure>
+            <img src="{% static 'img/s3.jpg' %}" alt="imagen3">
+        </figure>
+    </div>
+    <div class="box-img">
+        <a href="#"></a>
+        <figure>
+            <img src="{% static 'img/s6.jpg' %}" alt="imagen4">
+        </figure>
+    </div>
+    <div class="box-img">
+        <a href="#"></a>
+        <figure>
+            <img src="{% static 'img/back.jpg' %}" alt="imagen5">
+        </figure>
+    </div>
+    <div class="box-img">
+        <a href="#"></a>
+        <figure>
+            <img src="{% static 'img/s7.jpg' %}" alt="imagen6">
+        </figure>
+    </div>
+    <div class="box-img">
+        <a href="#"></a>
+        <figure>
+            <img src="{% static 'img/s8.jpg' %}" alt="imagen7">
+        </figure>
+    </div>
+</div>
+
+{% endblock %}

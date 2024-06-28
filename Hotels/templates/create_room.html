@@ -1,0 +1,10 @@
+{% extends 'base.html' %}  <!-- Ajusta según tu estructura de plantillas base -->
+
+{% block content %}
+  <h1>Crear Nueva Habitación</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear Habitación</button>
+</form>
+{% endblock %}
